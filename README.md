@@ -39,12 +39,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 
 
-Development Decisions
+## Development Decisions
 Using AgGrid for the table
  - I chose this as it has a lot of really great features like virtual scrolling, pagination, filtering. I also like the UI and the ability to customize the columns. It takes alot of the heavy lifting off of me and is easily integrated into the project. I also was able to create this as a reusable component that expects data and styles as props. 
 
 Using SWR for the data fetching
-- Being fairly new top react a quick google search led me to SWR. I chose this as it is a really great library for data fetching. It has a lot of really great features like caching, revalidation, and stale-while-revalidate. It also has very simple and readable code that is easy to understand and modify.
+- Being fairly new to react a quick google search led me to SWR. I chose this as it is a really great library for data fetching. It has a lot of really great features like caching, revalidation, and stale-while-revalidate. It also has very simple and readable code that is easy to understand and modify.
 
 Typescript
 - I love typescript. It is a statically typed language that is easy to understand and modify. By using types such as the PriceData type, I can easily see what data is being passed around and what data is expected. This helps me catch errors and bugs early on in the development process.
@@ -54,7 +54,7 @@ Using Chart.js for the charts
 
 
 
-Trade-offs
+## Trade-offs
 React V Angular
 - A big trade-off was deciding to do this in react over angular. Im much more familiar with angyular but wanted to try react and for a smaller projct like this the lightweight nature of react and its flexibility was great. Im sure there are better architectral approaches and other things that could be done better but I think this is a good start.
 
@@ -63,7 +63,7 @@ Debouncing
 
 
 
-Performance & Optimisation
+## Performance & Optimisation
 Pagination
 - I implemented client side pagination for the table. The data wasnt massive so it seemed a bit overkill to do server side pagination. I chose to use the default pagination that ag-grid provides. I think this is a good start and I can easily add more features to it later. I also added a full screen toggle to make the table full screen just adding to the user experience and making it more useful on a variety of devices.
 
