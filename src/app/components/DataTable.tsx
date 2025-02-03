@@ -51,6 +51,21 @@ const DataTable: React.FC<DataTableProps> = ({ search, styles }) => {
   const [fullScreen, setFullScreen] = useState(false);
   const rowData = useMemo(() => mapRowData(data), [data]);
   const colDefs = useMemo(() => generateColDefs(data), [data]);  
+
+  //manual filter if i had to do it and table didnt do it for me 
+  // const manualfilteredData = useMemo(() => {
+  //   if (!search) {
+  //    // filter hardcoded just for showing
+  //     return rowData.filter(row => row.open > 100);
+  //   }
+  //   return rowData.filter(row =>
+  //     Object.values(row).some(value =>
+  //       value.toString().toLowerCase().includes(search.toLowerCase())
+  //     )
+  //   );
+  // }, [search, rowData]);
+
+
   const filteredData = useMemo(() => {
     if (!search) return rowData;
     return rowData.filter(row => 
