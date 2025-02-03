@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./styles/layout.css";
 import { DataProvider } from "./context/DataContext";
+// import 'ag-grid-community/styles/ag-grid.css';
+// import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,7 +22,6 @@ export default function RootLayout({
       <DataProvider>
       <header className="navbar">Price Data Dashboard</header>
       <main className="content">{children}</main>
-      <footer className="footer">© 2025 Cormac Coulter</footer>
       </DataProvider>
     </body>
   </html>

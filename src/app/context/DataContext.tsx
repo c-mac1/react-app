@@ -25,5 +25,5 @@ export const useDataContext = (): DataContextType => {
     if (!context) {
         throw new Error("useDataContext must be used within a DataProvider");
     }
-    return context;
+    return context; 
 };
