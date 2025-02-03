@@ -3,7 +3,6 @@ import { getByText, render, screen, waitFor } from "@testing-library/react";
 import DataTable from "../components/DataTable";  // Adjust the path if needed
 import { DataProvider } from "../context/DataContext";
 import { PriceData } from "../types/priceData";
-
 import { createGrid, GridOptions } from 'ag-grid-community';
 
 
@@ -15,7 +14,7 @@ const mockData: PriceData = {
     high: [160, 165],
     low: [140, 145],
     close: [155, 160],
-    timestamp: [new Date(1609459200000), new Date(1609545600000)], // Convert timestamps to Date objects
+    timestamp: [new Date(1609459200000), new Date(1609545600000)]
   };
 
   function createAgGrid() {

@@ -22,6 +22,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## Learn More
 
+
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
@@ -40,7 +41,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 Development Decisions
 Using AgGrid for the table
- - I chose this as it has a lot of really great features like virtual scrolling, pagination, filtering. I also like the UI and the ability to customize the columns. It takes alot of the heavy lifting off of me and is easily integrated into the project.
+ - I chose this as it has a lot of really great features like virtual scrolling, pagination, filtering. I also like the UI and the ability to customize the columns. It takes alot of the heavy lifting off of me and is easily integrated into the project. I also was able to create this as a reusable component that expects data and styles as props. 
 
 Using SWR for the data fetching
 - Being fairly new top react a quick google search led me to SWR. I chose this as it is a really great library for data fetching. It has a lot of really great features like caching, revalidation, and stale-while-revalidate. It also has very simple and readable code that is easy to understand and modify.

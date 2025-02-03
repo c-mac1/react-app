@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
+import { AgGridReact } from 'ag-grid-react'; 
 import { AllCommunityModule, ModuleRegistry, ValueFormatterParams } from 'ag-grid-community'; 
 import { PriceData } from '../types/priceData';
 import { useDataContext } from '../context/DataContext';
@@ -33,7 +33,7 @@ return Array.from({ length: rowCount }, (_, index) => {
 const generateColDefs = (data: unknown) => {
   if (!data || Object.keys(data).length === 0) return [];
   return Object.keys(data).map((key) => ({
-    headerName: key.charAt(0).toUpperCase() + key.slice(1), // Capitalize the first letter for header
+    headerName: key.charAt(0).toUpperCase() + key.slice(1), 
     field: key as keyof PriceData, 
     filter: true,
     valueFormatter: (params: ValueFormatterParams) => {
@@ -79,6 +79,7 @@ return (
       <FullScreenToggle fullScreen={fullScreen} setFullScreen={setFullScreen} />
     </div>
     <div
+    // table css passed as prop for global styling
       style={{ 
         height: fullScreen ? 'calc(100vh - 200px)' : 1000,
         ...styles?.table,

@@ -37,9 +37,6 @@ const PieChart: React.FC<PieChartProps> = ({ data, style }) => {
     setSelectedVariable(e.target.value);
   };
 
-  console.log(data);
-  console.log(labels);
-
   // Calculate averages instead of just using the most recent value
   const averages = labels.reduce((acc: { [key: string]: number }, label) => {
     const values = data[label];

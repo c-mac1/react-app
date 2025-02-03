@@ -9,11 +9,10 @@ import { useDataContext } from "./context/DataContext";
 import LineChart from "./components/charts/LineChart";
 import BarChart from "./components/charts/BarChart";
 import Tabs from "./components/Tabs";
-import PieChart from "./components/charts/PieChart";
+// import PieChart from "./components/charts/PieChart";
 import { tableStyles } from "./styles/tableStyles";
-
-// const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const API_URL = "https://c4rm9elh30.execute-api.us-east-1.amazonaws.com/default/cachedPriceData?ticker=C ";
+import { environment } from "./env/env";
+const API_URL = environment.API_URL;
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
@@ -24,7 +23,7 @@ const fetcher = async (url: string) => {
 export default function Home() {
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState(search);
-  const [activeTab, setActiveTab] = useState("table"); // Manage active tab
+  const [activeTab, setActiveTab] = useState("table");
   const { data, error, mutate, isValidating } = useSWR(API_URL, fetcher);
   const { setData } = useDataContext();
 
@@ -91,7 +90,7 @@ export default function Home() {
         <div style={{ padding: "20px" }}>
           <LineChart data={data.price_data} style={{ marginBottom: "5%" }} />
           <BarChart data={data.price_data} />
-          <PieChart data={data.price_data} />
+          {/* <PieChart data={data.price_data} /> */}
         </div>
       )}
     </div>
