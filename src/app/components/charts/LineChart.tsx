@@ -93,7 +93,7 @@ const LineChart: React.FC<LineChartProps> = ({ data, style }) => {
       ))}
     </select>
 
-    <Line ref={chartRef} data={chartData} options={options} />
+    <Line ref={chartRef} data={chartData} options={options} data-testid="line-chart"/>
   </div>
   );
 };

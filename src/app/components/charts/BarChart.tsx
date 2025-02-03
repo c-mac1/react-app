@@ -90,7 +90,7 @@ const BarChart: React.FC<BarChartProps> = ({ data, style }) => {
         ))}
       </select>
 
-      <Bar ref={chartRef} data={chartData} options={options} />
+      <Bar ref={chartRef} data={chartData} options={options}  data-testid="bar-chart"/>
     </div>
   );
 };

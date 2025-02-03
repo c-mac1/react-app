@@ -1,22 +1,11 @@
-// const config = {
-//     preset: "ts-jest",
-//     testEnvironment: "jsdom",
-//     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
-//     setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
-//   };
-  
-// export default config;
 
-
-import type {Config} from 'jest';
-
-const config: Config = {
-  verbose: true,
-  preset: "ts-jest",
-  testEnvironment: "jsdom",
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
-  setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
-};
-
-export default config;
-  
+module.exports = {
+    preset: "ts-jest",
+    testEnvironment: "jsdom",
+    moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
+    setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
+    transform: {
+      "^.+\\.(ts|tsx|js|jsx)$": "babel-jest", // Use Babel to transform JSX/TSX
+    },
+    transformIgnorePatterns: ["/node_modules/"],
+  };

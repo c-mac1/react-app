@@ -1,6 +1,6 @@
 "use client"; // Add this at the top as code running client side
-
-import React, { createContext, useContext, useState } from "react";
+import React from "react";
+import { createContext, useContext, useState } from "react";
 import { PriceData } from "../types/priceData";
 
 interface DataContextType {
@@ -10,11 +10,14 @@ interface DataContextType {
 
 export const DataContext = createContext<DataContextType | undefined>(undefined);
 
-export const DataProvider = ({ children }: { children: React.ReactNode }) => {
+export const DataProvider = ({ children, value }: { children: React.ReactNode, value?: DataContextType }) => {
     const [data, setData] = useState<PriceData | null>(null);
 
+    // If `value` is passed (for testing), use it; otherwise, use the internal state
+     const contextValue = value || { data, setData };
+
     return (
-    <DataContext.Provider value={{ data, setData }}>
+    <DataContext.Provider value={contextValue}>
         {children}
     </DataContext.Provider>);
 };

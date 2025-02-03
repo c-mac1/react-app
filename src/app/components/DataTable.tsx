@@ -1,8 +1,8 @@
+import React, { useMemo, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import { AllCommunityModule, ModuleRegistry, ValueFormatterParams } from 'ag-grid-community'; 
 import { PriceData } from '../types/priceData';
 import { useDataContext } from '../context/DataContext';
-import React, { useMemo, useState } from 'react';
 import FullScreenToggle from './ScreenToggle';
 // import { useVirtualizer } from '@tanstack/react-virtual'; 
 ModuleRegistry.registerModules([AllCommunityModule]);
