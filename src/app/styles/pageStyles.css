@@ -1,0 +1,14 @@
+.tab-content {
+    padding: 20px;
+  }
+  
+
+  .retry-button {
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  .error-message {
+    color: red;
+    margin-bottom: 10px;
+  }

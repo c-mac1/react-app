@@ -1,3 +1,4 @@
+import React from "react";
 import { useRef, useState } from "react";
 import {
   Chart as ChartJS,
@@ -10,6 +11,8 @@ import {
   Legend
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { PriceData } from "../../types/priceData";
+import "../../styles/chartStyle.css";
 
 ChartJS.register(
   CategoryScale,
@@ -22,12 +25,13 @@ ChartJS.register(
 );
 
 interface LineChartProps {
-  data: any;
+  data: PriceData;
   style?: React.CSSProperties;
 }
 
+
 const LineChart: React.FC<LineChartProps> = ({ data, style }) => {
-  const chartRef = useRef<any>(null);
+  const chartRef = useRef<ChartJS<"line", unknown, string>>(null);
   const [selectedVariable, setSelectedVariable] = useState<string>("close");
 
   if (!data || !data.timestamp || !data.close) {
@@ -35,16 +39,22 @@ const LineChart: React.FC<LineChartProps> = ({ data, style }) => {
   }
 
   const handleVariableChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedVariable(e.target.value);
+    const value = e.target.value as keyof PriceData;
+    if (Object.keys(data).includes(value)) {
+      setSelectedVariable(value);
+    }
+
   };
 
   const chartData = {
-    labels: data.timestamp.map((timestamp: number) => new Date(timestamp).toLocaleDateString()),
+    labels: data.timestamp.map((timestamp: Date | number) =>  
+      new Date(timestamp).toLocaleDateString()
+    ),
     datasets: [
       {
-        label: "Stock Price",
-        data: data[selectedVariable],
-        borderColor: "rgb(75, 192, 192)",
+        label: `${selectedVariable.charAt(0).toUpperCase() + selectedVariable.slice(1)} Price`,
+        data: data[selectedVariable as keyof PriceData],
+        borderColor: "rgb(75, 192, 192)", 
         backgroundColor: "rgba(75, 192, 192, 0.5)",
         tension: 0.1
       }
@@ -82,7 +92,8 @@ const LineChart: React.FC<LineChartProps> = ({ data, style }) => {
 
   return (
     <div style={{ width: "100%", height: "400px", color: "black", ...style }}>
-    <h1 style={{ color: "white", display: "flex", justifyContent: "center", alignItems: "center" }}>Line Chart</h1>
+    <h1 className="chart-title">Line Chart</h1>
+
 
     {/* Dropdown to select the variable */}
     <select onChange={handleVariableChange} value={selectedVariable}>

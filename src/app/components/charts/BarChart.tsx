@@ -9,6 +9,9 @@ import {
   Legend
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { PriceData } from "@/app/types/priceData";
+import "../../styles/chartStyle.css";
+import React from "react";
 
 ChartJS.register(
   CategoryScale,
@@ -20,15 +23,15 @@ ChartJS.register(
 );
 
 interface BarChartProps {
-  data: any;
+  data: PriceData;
   style?: React.CSSProperties;
 }
 
 const BarChart: React.FC<BarChartProps> = ({ data, style }) => {
   const [selectedVariable, setSelectedVariable] = useState("close"); // Default to 'close'
-  const chartRef = useRef<any>(null);
+  const chartRef = useRef<ChartJS<"bar", unknown, string>>(null);
 
-  if (!data || !data.timestamp || !data[selectedVariable]) {
+  if (!data || !data.timestamp) {
     return <div>No data available</div>;
   }
 
@@ -38,11 +41,13 @@ const BarChart: React.FC<BarChartProps> = ({ data, style }) => {
   };
 
   const chartData = {
-    labels: data.timestamp.map((timestamp: number) => new Date(timestamp).toLocaleDateString()),
+    labels: data.timestamp.map((timestamp: Date | number) =>  
+        new Date(timestamp).toLocaleDateString()
+      ),
     datasets: [
       {
         label: `${selectedVariable.charAt(0).toUpperCase() + selectedVariable.slice(1)} Price`,
-        data: data[selectedVariable],
+        data: data[selectedVariable as keyof PriceData],
         backgroundColor: "rgba(75, 192, 192, 0.5)", // Bar color
       }
     ]
@@ -79,7 +84,8 @@ const BarChart: React.FC<BarChartProps> = ({ data, style }) => {
   return (
     
     <div style={{ width: "100%", height: "400px", color: "black", padding: "20px", ...style }}>
-    <h1 style={{ color: "white", display: "flex", justifyContent: "center", alignItems: "center" }}>Bar Chart</h1>
+    <h1 className="chart-title">Bar Chart</h1>
+
 
       {/* Dropdown to select the variable */}
       <select onChange={handleVariableChange} value={selectedVariable}>
@@ -90,7 +96,7 @@ const BarChart: React.FC<BarChartProps> = ({ data, style }) => {
         ))}
       </select>
 
-      <Bar ref={chartRef} data={chartData} options={options}  data-testid="bar-chart"/>
+      <Bar ref={chartRef} data={chartData} options={options} />
     </div>
   );
 };

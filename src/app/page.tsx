@@ -10,7 +10,7 @@ import Tabs from "./components/Tabs";
 // import PieChart from "./components/charts/PieChart";
 import { tableStyles } from "./styles/tableStyles";
 import { usePriceData } from "./hooks/api";
-
+import "./styles/pageStyles.css";
 export default function Home() {
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState(search);
@@ -38,9 +38,9 @@ export default function Home() {
 
   if (error) {
     return (
-      <div style={{ textAlign: "center", color: "red", marginTop: "20px" }}>
+      <div className="error-message">
         <p>Error: {error.message}</p>
-        <button onClick={handleRetry} style={{ padding: "8px 12px", cursor: "pointer" }}>
+        <button onClick={handleRetry} className="retry-button">
           Retry
         </button>
       </div>
@@ -52,9 +52,9 @@ export default function Home() {
   // handle empty data
   if (!priceData) {
     return (
-      <div style={{ textAlign: "center", marginTop: "20px" }}>
+      <div className="error-message">
         <p>No data available. Please try again later.</p>
-        <button onClick={handleRetry} style={{ padding: "8px 12px", cursor: "pointer" }}>
+        <button onClick={handleRetry} className="retry-button">
           Retry
         </button>
       </div>
@@ -68,13 +68,13 @@ export default function Home() {
 
       {/* Conditionally render the active tab */}
       {activeTab === "table" && (
-        <div style={{ padding: "20px" }}>
+        <div className="tab-content">
           <SearchBar search={search} setSearch={setSearch} />
           <DataTable search={debouncedSearch} styles={tableStyles} />
         </div>
       )}
       {activeTab === "chart" && (
-        <div style={{ padding: "20px" }}>
+        <div className="tab-content">
           <LineChart data={priceData} style={{ marginBottom: "5%" }} />
           <BarChart data={priceData} />
           {/* <PieChart data={data.price_data} /> */}
