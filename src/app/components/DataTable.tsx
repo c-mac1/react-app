@@ -35,6 +35,7 @@ const generateColDefs = (data: unknown) => {
     headerName: key.charAt(0).toUpperCase() + key.slice(1), 
     field: key as keyof PriceData, 
     filter: true,
+    flex: 1,
     valueFormatter: (params: ValueFormatterParams) => {
       if (key === 'timestamp') {
         return new Date(params.value);
