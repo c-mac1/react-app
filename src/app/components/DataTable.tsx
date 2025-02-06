@@ -20,7 +20,6 @@ const mapRowData = (data: any) => {
   if (!data || Object.keys(data).length === 0) return [];
   const keys = Object.keys(data || {});
   const rowCount = data[keys[0]].length;
-
 return Array.from({ length: rowCount }, (_, index) => {
   const row: { [key: string]: any } = {};
   keys.forEach(key => {
@@ -86,7 +85,6 @@ const DataTable: React.FC<DataTableProps> = ({ search, styles }) => {
   const pageSize = Math.floor((fullScreen ? window.innerHeight - 200 : 1000) / 50);
 
   
-
   
 return (
   <div>

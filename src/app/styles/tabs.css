@@ -1,0 +1,15 @@
+.tab-content {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px; 
+}
+
+.tab-content.active {
+    background-color: #ddd;
+    color: black;
+}
+
+.tab-content.inactive {
+    background-color: transparent;
+    color: white;
+}

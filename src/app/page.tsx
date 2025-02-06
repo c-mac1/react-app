@@ -18,11 +18,11 @@ export default function Home() {
   const { priceData, error, mutate, isValidating } = usePriceData();
   const { setData } = useDataContext();
 
-  useEffect(() => {
-    if (priceData) {
-      setData(priceData);
-    }
-  }, [priceData, setData]);
+  // useEffect(() => {
+  //   if (priceData) {
+  //     setData(priceData);
+  //   }
+  // }, [priceData, setData]);
 
   useEffect(() => {
     const handler = setTimeout(() => {

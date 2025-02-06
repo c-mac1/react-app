@@ -6,8 +6,6 @@ import { PriceData } from "../types/priceData";
 import { createGrid, GridOptions } from 'ag-grid-community';
 
 
-
-
 const mockData: PriceData = {
     open: [150, 155],
     volume: [1000, 1200],
