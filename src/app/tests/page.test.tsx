@@ -77,29 +77,18 @@ describe("Home Component", () => {
     expect(screen.getByRole("button", { name: /retry/i })).toBeInTheDocument();
   });
 
-  // test("search bar updates debounced search", async () => {
-  //   renderWithSWR(<Home />);
-
-  //   // Ensure the "table" tab is active and SearchBar is rendered
-  //   fireEvent.click(screen.getByRole("button", { name: /table/i }));
-
-  //   // Ensure the SearchBar is rendered and get the input field
-  //   const searchInput = screen.getByPlaceholderText("Search");
-  //   expect(searchInput).toBeInTheDocument();  // Ensure the input is available
-
-  //   // Simulate typing in the search bar
-  //   await act(async () => {
-  //     fireEvent.change(searchInput, { target: { value: "150" } });
-  //   });
-
-  //   // Verify the debounce effect (check if the debounced value is rendered)
-  //   await waitFor(() => {
-  //     expect(screen.getByText("150")).toBeInTheDocument();  // Ensure the "150" value is rendered in the DataTable
-  //   });
-  // });
 
 
+  test("renders SearchBar component", async () => {
+    render(
+      <DataProvider>
+        <Home />
+      </DataProvider>
+    );
   
-  
+    await waitFor(() => {
+      expect(screen.getByPlaceholderText(/search/i)).toBeInTheDocument();
+    });
+  });  
   
 });

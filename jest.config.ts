@@ -8,4 +8,7 @@ module.exports = {
       "^.+\\.(ts|tsx|js|jsx)$": "babel-jest", // Use Babel to transform JSX/TSX
     },
     transformIgnorePatterns: ["/node_modules/"],
+    moduleNameMapper: {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+    },
   };

@@ -12,17 +12,18 @@ import { tableStyles } from "./styles/tableStyles";
 import { usePriceData } from "./hooks/api";
 import "./styles/pageStyles.css";
 export default function Home() {
+  
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState(search);
   const [activeTab, setActiveTab] = useState("table");
   const { priceData, error, mutate, isValidating } = usePriceData();
   const { setData } = useDataContext();
 
-  // useEffect(() => {
-  //   if (priceData) {
-  //     setData(priceData);
-  //   }
-  // }, [priceData, setData]);
+  useEffect(() => {
+    if (priceData) {
+      setData(priceData);
+    }
+  }, [priceData, setData]);
 
   useEffect(() => {
     const handler = setTimeout(() => {

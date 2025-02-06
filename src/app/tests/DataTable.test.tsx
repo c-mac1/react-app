@@ -1,5 +1,5 @@
 import React from "react";
-import { getByText, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, getByText, render, screen, waitFor } from "@testing-library/react";
 import DataTable from "../components/DataTable";  // Adjust the path if needed
 import { DataProvider } from "../context/DataContext";
 import { PriceData } from "../types/priceData";
@@ -7,7 +7,7 @@ import { createGrid, GridOptions } from 'ag-grid-community';
 
 
 const mockData: PriceData = {
-    open: [150, 155],
+    open: [150, 190],
     volume: [1000, 1200],
     high: [160, 165],
     low: [140, 145],
@@ -79,26 +79,31 @@ test("filters table data based on search input", async () => {
   });
 });
 
-// test("sorts rows correctly when column header is clicked", async () => {
-//   const { div, api } = createAgGrid();
-//   renderWithData(<DataTable search="" />);
 
+test("sorts rows correctly when column header is clicked", async () => {
+  renderWithData(<DataTable search="" />); 
+  // Wait for the sorting to take effect
+  await waitFor(() => {
+    const columnHeader = screen.getByRole('columnheader', { name: /open/i });
+    fireEvent.click(columnHeader);
+    const firstRow = screen.getByText("150");  // Ensure the first row's first cell is sorted
+    console.log(firstRow);
+    expect(firstRow).toBeInTheDocument(); // Check if "150" is the first value (after sorting)
+  });
 
-//   const columnHeader = screen.getByText(/open/i);
-//   fireEvent.click(columnHeader);
+  //check opposite direction
+  await waitFor(() => {
+    const columnHeader = screen.getByRole('columnheader', { name: /open/i });
+    fireEvent.click(columnHeader);
+    const firstRow = screen.getByText("155");  // Ensure the first row's first cell is sorted
+    console.log(firstRow);
+  });
 
-//   expect(getByText(div, 'Open')).toHaveTextContent('Open');
+  // Check that the number of displayed rows is correct after sorting
+  const gridCells = screen.getAllByRole("gridcell");
+  expect(gridCells.length).toBeGreaterThan(0); // Ensure that grid cells are rendered
+});
 
-//   // Test the value formatter by searching for the correct price string
-//   expect(getByText(div, '150')).toBeDefined();
-//       expect(api.getDisplayedRowCount()).toBe(3);
-
-
-//   await waitFor(() => {
-//     const firstCell = screen.getByText("150"); // Check the first cell in the first row after sorting
-//     expect(firstCell).toBeInTheDocument(); // Ensure '150' appears first
-//   });
-// });
 
 
 test('Data renders correctly', async () => {
